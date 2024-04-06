@@ -18,6 +18,12 @@ export default function EnterText(props) {
         }
         spaceNumbersUpdating(spaces);
     }
+    const lowerCasing = () => {
+        updatedText(oldText.toLowerCase());
+    }
+    const clearing = () => {
+        updatedText("");
+    }
     // States
     const [oldText, updatedText] = useState('');
     const [spaceNumbers, spaceNumbersUpdating] = useState(0);
@@ -30,8 +36,10 @@ export default function EnterText(props) {
                     <label className="form-label" htmlFor="input-box">Enter Your Text Below : </label>
                     <textarea className="form-control" onKeyUp={writing} onChange={onChanging} value={oldText} id="input-box" rows="10" />
                 </div>
-                <button className="btn btn-outline-success" onClick={upperCasing}>Upper Case</button>
-                {/* <button className="btn btn-outline-success mx-4">Lower Case</button> */}
+                <h5>Functions : </h5>
+                <button className="btn btn-outline-success m-3" onClick={lowerCasing}>To Lower Case</button>
+                <button className="btn btn-outline-info m-3" onClick={upperCasing}>To Upper Case</button>
+                <button className="btn btn-outline-danger m-3" onClick={clearing}>Clear Text</button>
             </div>
             <div className="container m-3">
                 <h2>Your Text Summary : </h2>
