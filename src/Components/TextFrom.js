@@ -42,8 +42,13 @@ export default function EnterText(props) {
     const handleItalicClick = () => {
         setItalic(true);
     }
+    const changingColor = (e) => {
+        setColor(e.target.value);
+        console.log(prevColor);
+    }
     // States
     const [isItalic, setItalic] = useState(false);
+    const [prevColor, setColor] = useState('#000000');
     const [isBold, setIsBold] = useState(false);
     const [oldText, updatedText] = useState('');
     const [wordNumber, wordNumbersUpdating] = useState(0);
@@ -62,11 +67,15 @@ export default function EnterText(props) {
                 </div>
                 <h5>Functions : </h5>
                 <div className='text-center'>
-                    <button className="btn btn-outline-success m-3 px-5" onClick={lowerCasing}>To lower case</button>
-                    <button className="btn btn-outline-info m-3 px-5" onClick={upperCasing}>To UPPER CASE</button>
-                    <button className="btn btn-outline-primary m-3 px-5" onClick={handleBoldClick}>To <b>Bold</b></button>
-                    <button className="btn btn-outline-primary m-3 px-5" onClick={handleItalicClick}>To <i>Italic</i></button>
-                    <button className="btn btn-outline-danger m-3 px-5" onClick={clearing}>Clear Text</button>
+                    <button className="btn btn-success m-3 px-5" onClick={lowerCasing}>To lower case</button>
+                    <button className="btn btn-info m-3 px-5" onClick={upperCasing}>To UPPER CASE</button>
+                    <button className="btn btn-primary m-3 px-5" onClick={handleBoldClick}>To <b>Bold</b></button>
+                    <button className="btn btn-secondary m-3 px-5" onClick={handleItalicClick}>To <i>Italic</i></button>
+                    <button className="btn btn-danger m-3 px-5" onClick={clearing}>Clear Text</button>
+                    <label className="form-label" htmlFor="colorPicker">
+                        Select Color for Text :
+                        <input onChange={changingColor} className="form-control form-control-color w-100" defaultValue={prevColor} id="colorPicker" title="Choose your color" type="color" />
+                    </label>
                 </div>
             </div>
             <div className="container m-3">
@@ -111,7 +120,11 @@ export default function EnterText(props) {
             </div>
             <div className="container m-3">
                 <h2>Preview : </h2>
-                <p className="lead" style={{ fontWeight: isBold ? 'bold' : 'normal', fontStyle: isItalic ? 'italic' : 'normal' }}>
+                <p className="lead p-3 bg-light" style={{
+                    fontWeight: isBold ? 'bold' : 'normal',
+                    fontStyle: isItalic ? 'italic' : 'normal',
+                    color: prevColor
+                }}>
                     &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;{oldText}
                 </p>
             </div>
