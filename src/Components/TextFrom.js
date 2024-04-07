@@ -8,12 +8,16 @@ export default function EnterText(props) {
     const onChanging = (e) => {
         updatedText(e.target.value);
     }
-    const writing = (e) => {
+    const writing = () => {
         let spaces = 0;
+        let sentences = 0;
         if (oldText !== "") {
             for (let i = 0; i < oldText.length; i++) {
                 if (oldText.charAt(i) === " ") {
                     spaces++;
+                }
+                if (oldText.charAt(i) === '.') {
+                    sentences++;
                 }
             }
         }
@@ -23,6 +27,7 @@ export default function EnterText(props) {
             wordNumbersUpdating(oldText.split(" ").length);
         }
         spaceNumbersUpdating(spaces);
+        sentenceNumberUpdating(sentences);
     }
     const lowerCasing = () => {
         updatedText(oldText.toLowerCase());
@@ -43,13 +48,16 @@ export default function EnterText(props) {
     const [oldText, updatedText] = useState('');
     const [wordNumber, wordNumbersUpdating] = useState(0);
     const [spaceNumbers, spaceNumbersUpdating] = useState(0);
+    const [sentenceNumber, sentenceNumberUpdating] = useState(0);
     // Return Module
     return (
         <>
             <div className='container'>
-                <h1>{props.heading}</h1>
                 <div className="mb-3">
-                    <label className="form-label" htmlFor="input-box">Enter Your Text Below : </label>
+                    <label className="form-label" htmlFor="input-box">
+                        <h1>{props.heading}</h1>
+                        Enter Your Text Below :
+                    </label>
                     <textarea className="form-control" onKeyUp={writing} onChange={onChanging} value={oldText} id="input-box" rows="10" />
                 </div>
                 <h5>Functions : </h5>
@@ -67,28 +75,35 @@ export default function EnterText(props) {
                     <li className="list-group-item d-flex justify-content-between align-items-start">
                         <div className="ms-2 me-auto">
                             <div className="fw-bold">Words</div>
-                            i.e., TextUtils a word.
+                            i.e. TextUtils a word.
                         </div>
                         <span className="badge text-bg-primary rounded-pill">{wordNumber}</span>
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-start">
                         <div className="ms-2 me-auto">
                             <div className="fw-bold">Characters</div>
-                            i.e., 'A', 'a', etc.
+                            i.e. 'A', 'a', etc.
                         </div>
                         <span className="badge text-bg-primary rounded-pill">{oldText.length}</span>
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-start">
                         <div className="ms-2 me-auto">
+                            <div className="fw-bold">Sentences</div>
+                            i.e. TextUtils, A Best Utility for Analyzing Text.
+                        </div>
+                        <span className="badge text-bg-primary rounded-pill">{sentenceNumber}</span>
+                    </li>
+                    <li className="list-group-item d-flex justify-content-between align-items-start">
+                        <div className="ms-2 me-auto">
                             <div className="fw-bold">Spaces</div>
-                            i.e., In 'Text Utils', No. of Space is 1.
+                            i.e. In 'Text Utils', No. of Space is 1.
                         </div>
                         <span className="badge text-bg-primary rounded-pill">{spaceNumbers}</span>
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-start">
                         <div className="ms-2 me-auto">
                             <div className="fw-bold">Time to Read</div>
-                            i.e., It takes about 0.48 Second to read one word.
+                            i.e. It takes about 0.48 Second to read one word.
                         </div>
                         <span className="badge text-bg-primary rounded-pill">{oldText.length === 0 ? 0 : (0.48 * oldText.split(" ").length)} Seconds</span>
                     </li>
