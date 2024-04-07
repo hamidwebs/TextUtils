@@ -1,12 +1,13 @@
 import React from 'react'
 
-export default function About() {
+export default function About(props) {
+    
     return (
         <>
             <div className="container">
-                <h1 className='my-4'>About us</h1>
+                <h1 className={`my-4 text-${props.mode === 'dark' ? 'light' : 'dark'}`}>About us</h1>
                 <div
-                    className="accordion"
+                    className={`accordion`}
                     id="accordionExample"
                 >
                     <div className="accordion-item">
@@ -14,7 +15,7 @@ export default function About() {
                             <button
                                 aria-controls="collapseOne"
                                 aria-expanded="true"
-                                className="accordion-button"
+                                className={`accordion-button bg-${props.mode} text-${props.mode === 'dark' ? 'light' : 'dark'}`}
                                 data-bs-target="#collapseOne"
                                 data-bs-toggle="collapse"
                                 type="button"
@@ -27,7 +28,7 @@ export default function About() {
                             data-bs-parent="#accordionExample"
                             id="collapseOne"
                         >
-                            <div className="accordion-body">
+                            <div className={`accordion-body bg-${props.mode} text-${props.mode === 'dark' ? 'light' : 'dark'}`}>
                                 <strong>
                                     This is the first item's accordion body.
                                 </strong>
@@ -44,7 +45,7 @@ export default function About() {
                             <button
                                 aria-controls="collapseTwo"
                                 aria-expanded="false"
-                                className="accordion-button collapsed"
+                                className={`accordion-button collapsed bg-${props.mode} text-${props.mode === 'dark' ? 'light' : 'dark'}`}
                                 data-bs-target="#collapseTwo"
                                 data-bs-toggle="collapse"
                                 type="button"
@@ -57,7 +58,7 @@ export default function About() {
                             data-bs-parent="#accordionExample"
                             id="collapseTwo"
                         >
-                            <div className="accordion-body">
+                            <div className={`accordion-body bg-${props.mode} text-${props.mode === 'dark' ? 'light' : 'dark'}`}>
                                 <strong>
                                     This is the second item's accordion body.
                                 </strong>
@@ -74,7 +75,7 @@ export default function About() {
                             <button
                                 aria-controls="collapseThree"
                                 aria-expanded="false"
-                                className="accordion-button collapsed"
+                                className={`accordion-button collapsed bg-${props.mode} text-${props.mode === 'dark' ? 'light' : 'dark'}`}
                                 data-bs-target="#collapseThree"
                                 data-bs-toggle="collapse"
                                 type="button"
@@ -87,7 +88,7 @@ export default function About() {
                             data-bs-parent="#accordionExample"
                             id="collapseThree"
                         >
-                            <div className="accordion-body">
+                            <div className={`accordion-body bg-${props.mode} text-${props.mode === 'dark' ? 'light' : 'dark'}`}>
                                 <strong>
                                     This is the third item's accordion body.
                                 </strong>
@@ -100,7 +101,6 @@ export default function About() {
                         </div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-dark my-3" data-bs-toggle="button">Dark Mode</button>
             </div>
         </>
     )
