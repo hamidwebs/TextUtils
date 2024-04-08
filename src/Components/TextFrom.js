@@ -14,6 +14,7 @@ export default function EnterText(props) {
     const upperCasing = () => {
         updatedText(oldText.toUpperCase());
         setCopyBtnText('Copy');
+        props.showAlert('Successfully Converted to Upper Case', 'success');
     }
     const onChanging = (e) => {
         updatedText(e.target.value);
@@ -43,29 +44,35 @@ export default function EnterText(props) {
     const lowerCasing = () => {
         updatedText(oldText.toLowerCase());
         setCopyBtnText('Copy');
+        props.showAlert('Successfully Converted to Lower Case', 'success');
     }
     const clearing = () => {
         updatedText("");
         wordNumbersUpdating(0);
         setCopyBtnText('Copy');
         navigator.clipboard.writeText('');
+        props.showAlert('Successfully Cleared', 'danger');
     }
     const handleBoldClick = () => {
         setIsBold(!isBold);
         setCopyBtnText('Copy');
+        props.showAlert('Successfully Bolded the Text', 'success');
     };
     const handleItalicClick = () => {
         setItalic(!isItalic);
         setCopyBtnText('Copy');
+        props.showAlert('Successfully Italicized the Text', 'success');
     }
     const changingColor = (e) => {
         setColor(e.target.value);
         setCopyBtnText('Copy');
+        props.showAlert('Successfully Changed the Text Color', 'success');
     }
     const copyBtn = () => {
         setCopyBtnText('Copied!');
         document.querySelector('#btn-copy').classList.add('active');
         navigator.clipboard.writeText(oldText);
+        props.showAlert('Successfully Copied to Clipboard', 'success');
     }
     const styleOfPreview = {
         fontWeight: isBold ? 'bold' : 'normal',
