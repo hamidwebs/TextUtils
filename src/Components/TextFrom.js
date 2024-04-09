@@ -4,12 +4,14 @@ export default function EnterText(props) {
     // States
     const [copyBtnText, setCopyBtnText] = useState('Copy');
     const [isItalic, setItalic] = useState(false);
-    const [prevColor, setColor] = useState('#332D2D');
+    const [prevColor, setColor] = useState('');
     const [isBold, setIsBold] = useState(false);
     const [oldText, updatedText] = useState('');
     const [wordNumber, wordNumbersUpdating] = useState(0);
     const [spaceNumbers, spaceNumbersUpdating] = useState(0);
     const [sentenceNumber, sentenceNumberUpdating] = useState(0);
+    // Variables
+    
     // Functions
     const upperCasing = () => {
         updatedText(oldText.toUpperCase());
@@ -74,11 +76,6 @@ export default function EnterText(props) {
         navigator.clipboard.writeText(oldText);
         props.showAlert('Successfully Copied to Clipboard', 'success');
     }
-    const styleOfPreview = {
-        fontWeight: isBold ? 'bold' : 'normal',
-        fontStyle: isItalic ? 'italic' : 'normal',
-        color: prevColor
-    }
     // Return Module
     return (
         <>
@@ -99,7 +96,7 @@ export default function EnterText(props) {
                     <button className={`btn ${props.mode === 'light' ? 'btn-outline-danger' : 'btn-danger'} m-3 px-5`} onClick={clearing}>Clear Text</button>
                     <label className="form-label" htmlFor="colorPicker">
                         Select Color for Text :
-                        <input onChange={changingColor} className='form-control form-control-color w-100' defaultValue={prevColor} id="colorPicker" title="Choose your color" type="color" />
+                        <input onChange={changingColor} className='form-control form-control-color w-100 colorPicker' value={props.mode === 'dark' ? '#FBFBFB' : '#332D2D'} id="colorPicker" title="Choose your color" type="color" />
                     </label>
                 </div>
             </div>
@@ -145,7 +142,11 @@ export default function EnterText(props) {
             </div>
             <div className="container m-3">
                 <h2 className={`text-${props.mode === 'dark' ? 'light' : 'dark'}`}>Preview : </h2>
-                <p className={`lead p-3 bg-${props.mode}`} style={styleOfPreview}>
+                <p className={`lead p-3 bg-${props.mode}`} style={{
+                    fontWeight: isBold ? 'bold' : 'normal',
+                    fontStyle: isItalic ? 'italic' : 'normal',
+                    color: prevColor
+                }}>
                     &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;{oldText === '' ? 'Enter Text to Preview...' : oldText}
                 </p>
                 <button aria-pressed="true" id='btn-copy' className={`btn ${props.mode === 'light' ? 'btn-outline-primary' : 'btn-primary'}`} onClick={copyBtn}>{copyBtnText}</button>
