@@ -137,15 +137,15 @@ export default function EnterText(props) {
                 </ol>
             </div>
             <div className="container m-3">
-                <h2 className={`text-${props.mode === 'dark' ? 'light' : 'dark'}`}>Preview : </h2>
-                <p className={`lead p-3 bg-${props.mode}`} style={{
+                <h2 className={`d-inline-block text-${props.mode === 'dark' ? 'light' : 'dark'}`}>Preview : </h2>
+                <button aria-pressed="true" id='btn-copy' className={`d-inline-block btn ${props.mode === 'light' ? 'btn-outline-primary' : 'btn-primary'} float-end`} onClick={copyBtn}>{copyBtnText}</button>
+                <div className={`lead p-3 bg-${props.mode}`} style={{
                     fontWeight: isBold ? 'bold' : 'normal',
                     fontStyle: isItalic ? 'italic' : 'normal',
                     color: prevColor
                 }}>
                     &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;{oldText === '' ? 'Enter Text to Preview...' : oldText}
-                </p>
-                <button aria-pressed="true" id='btn-copy' className={`btn ${props.mode === 'light' ? 'btn-outline-primary' : 'btn-primary'}`} onClick={copyBtn}>{copyBtnText}</button>
+                </div>
             </div>
         </>
     )
