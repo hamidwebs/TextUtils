@@ -35,11 +35,7 @@ export default function EnterText(props) {
                 }
             }
         }
-        if (oldText.length === 0) {
-            wordNumbersUpdating(0);
-        } else {
-            wordNumbersUpdating(oldText.split(" ").length);
-        }
+        wordNumbersUpdating(oldText.split(" ").filter((char) => { return char.length !== 0 }).length)
         spaceNumbersUpdating(spaces);
         sentenceNumberUpdating(sentences);
     }
