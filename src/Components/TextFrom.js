@@ -10,8 +10,8 @@ export default function EnterText(props) {
     const [wordNumber, wordNumbersUpdating] = useState(0);
     const [spaceNumbers, spaceNumbersUpdating] = useState(0);
     const [sentenceNumber, sentenceNumberUpdating] = useState(0);
-    // Variables
-    
+    // title
+    document.title = 'TextUtils - Home';
     // Functions
     const upperCasing = () => {
         updatedText(oldText.toUpperCase());
@@ -96,7 +96,7 @@ export default function EnterText(props) {
                     <button className={`btn ${props.mode === 'light' ? 'btn-outline-danger' : 'btn-danger'} m-3 px-5`} onClick={clearing}>Clear Text</button>
                     <label className="form-label" htmlFor="colorPicker">
                         Select Color for Text :
-                        <input onChange={changingColor} className='form-control form-control-color w-100 colorPicker' value={props.mode === 'dark' ? '#FBFBFB' : '#332D2D'} id="colorPicker" title="Choose your color" type="color" />
+                        <input onChange={changingColor} className='form-control form-control-color w-100 colorPicker' defaultValue={prevColor} id="colorPicker" title="Choose your color" type="color" />
                     </label>
                 </div>
             </div>

@@ -32,20 +32,22 @@ function App() {
       showAlert('Dark Mode has been Enabled', 'success');
     }
   }
+  // title
+  document.title = 'TextUtils - Home';
   return (
     <>
       <Router>
         <Navbar title="TextUtils" aboutText="About TextUtils" aboutLink="/" mode={mode} toggleMode={toggleMode} />
         <Alert alert={alert} mode={mode} />
         <Switch>
-          <Route exact path="/about">
-            <div className="container my-4">
-              <About mode={mode} />
-            </div>
-          </Route>
           <Route path="/">
             <div className="container my-4">
               <TextFrom heading="Enter Text to Analyze" mode={mode} toggleMode={toggleMode} showAlert={showAlert} />
+            </div>
+          </Route>
+          <Route exact path="/about">
+            <div className="container my-4">
+              <About mode={mode} />
             </div>
           </Route>
         </Switch>
