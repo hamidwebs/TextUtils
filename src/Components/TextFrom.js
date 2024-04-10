@@ -85,14 +85,14 @@ export default function EnterText(props) {
                 </div>
                 <h5>Functions : </h5>
                 <div className='text-center'>
-                    <button className={`btn ${props.mode === 'light' ? 'btn-outline-success' : 'btn-success'} m-3 px-5`} onClick={lowerCasing}>To lower case</button>
-                    <button className={`btn ${props.mode === 'light' ? 'btn-outline-info' : 'btn-info'} m-3 px-5`} onClick={upperCasing}>To UPPER CASE</button>
-                    <button className={`btn ${props.mode === 'light' ? 'btn-outline-primary' : 'btn-primary'} m-3 px-5`} onClick={handleBoldClick}>To <b>Bold</b></button>
-                    <button className={`btn ${props.mode === 'light' ? 'btn-outline-secondary' : 'btn-secondary'} m-3 px-5`} onClick={handleItalicClick}>To <i>Italic</i></button>
-                    <button className={`btn ${props.mode === 'light' ? 'btn-outline-danger' : 'btn-danger'} m-3 px-5`} onClick={clearing}>Clear Text</button>
+                    <button className={`btn ${props.mode === 'light' ? 'btn-outline-success' : 'btn-success'} m-3 px-5 ${oldText.length === 0 ? 'disabled' : ''}`} onClick={lowerCasing}>To lower case</button>
+                    <button className={`btn ${props.mode === 'light' ? 'btn-outline-info' : 'btn-info'} m-3 px-5 ${oldText.length === 0 ? 'disabled' : ''}`} onClick={upperCasing}>To UPPER CASE</button>
+                    <button className={`btn ${props.mode === 'light' ? 'btn-outline-primary' : 'btn-primary'} m-3 px-5 ${oldText.length === 0 ? 'disabled' : ''}`} onClick={handleBoldClick}>To <b>Bold</b></button>
+                    <button className={`btn ${props.mode === 'light' ? 'btn-outline-secondary' : 'btn-secondary'} m-3 px-5 ${oldText.length === 0 ? 'disabled' : ''}`} onClick={handleItalicClick}>To <i>Italic</i></button>
+                    <button className={`btn ${props.mode === 'light' ? 'btn-outline-danger' : 'btn-danger'} m-3 px-5 ${oldText.length === 0 ? 'disabled' : ''}`} onClick={clearing}>Clear Text</button>
                     <label className="form-label" htmlFor="colorPicker">
                         Select Color for Text :
-                        <input onChange={changingColor} className='form-control form-control-color w-100 colorPicker' defaultValue={prevColor} id="colorPicker" title="Choose your color" type="color" />
+                        <input disabled={oldText.length === 0} onChange={changingColor} className={`form-control form-control-color w-100 colorPicker ${oldText.length === 0 ? 'disabled' : ''}`} defaultValue={prevColor} id="colorPicker" title="Choose your color" type="color" />
                     </label>
                 </div>
             </div>
@@ -138,13 +138,13 @@ export default function EnterText(props) {
             </div>
             <div className="container m-3">
                 <h2 className={`d-inline-block text-${props.mode === 'dark' ? 'light' : 'dark'}`}>Preview : </h2>
-                <button aria-pressed="true" id='btn-copy' className={`d-inline-block btn ${props.mode === 'light' ? 'btn-outline-primary' : 'btn-primary'} float-end`} onClick={copyBtn}>{copyBtnText}</button>
+                <button aria-pressed="true" id='btn-copy' className={`d-inline-block btn ${props.mode === 'light' ? 'btn-outline-primary' : 'btn-primary'} float-end ${oldText.length === 0 ? 'disabled' : ''}`} onClick={copyBtn}>{copyBtnText}</button>
                 <div className={`lead p-3 bg-${props.mode}`} style={{
                     fontWeight: isBold ? 'bold' : 'normal',
                     fontStyle: isItalic ? 'italic' : 'normal',
                     color: prevColor
                 }}>
-                    &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;{oldText === '' ? 'Enter Text to Preview...' : oldText}
+                    &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;{oldText === '' ? 'Nothing to Preview ...' : oldText}
                 </div>
             </div>
         </>
