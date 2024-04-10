@@ -13,22 +13,15 @@ export default function Navbar(props) {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link className="nav-link active" to="/">Home</Link>
+                            <Link className={`nav-link ${document.title === 'TextUtils - Home' ? 'active' : ''}`} to="/">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to='/about'>{props.aboutText}</Link>
+                            <Link className={`nav-link ${document.title === 'TextUtils - About' ? 'active' : ''}`} to='/about'>{props.aboutText}</Link>
                         </li>
                     </ul>
-                    <div className="dropdown">
-                        <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Change Appearance
-                        </button>
-                        <ul className="dropdown-menu dropdown-menu-dark">
-                            <li><button className="dropdown-item" href="/">Light Mode</button></li>
-                            <li><button className="dropdown-item" href="/">Dark Mode</button></li>
-                            <li><button className="dropdown-item" href="/">Navy Blue</button></li>
-                            <li><button className="dropdown-item" href="/">Forest Green</button></li>
-                        </ul>
+                    <div className={`form-check form-switch`}>
+                        <input onClick={props.toggleMode} className="form-check-input" type="checkbox" role="switch" id="switchOfDarkMode" />
+                            <label onClick={props.toggleMode} className={`form-check-label text-${props.mode === 'dark' ? 'light' : 'dark'}`} htmlFor="switchOfDarkMode">{props.mode === 'dark' ? 'Disable Dark Mode' : 'Enable Dark Mode'}</label>
                     </div>
                 </div>
             </div>

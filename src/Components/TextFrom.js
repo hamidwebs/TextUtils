@@ -35,7 +35,7 @@ export default function EnterText(props) {
                 }
             }
         }
-        wordNumbersUpdating(oldText.split(" ").filter((char) => { return char.length !== 0 }).length)
+        wordNumbersUpdating(oldText.split(/\s+/).filter((char) => { return char.length !== 0 }).length)
         spaceNumbersUpdating(spaces);
         sentenceNumberUpdating(sentences);
     }
@@ -72,6 +72,7 @@ export default function EnterText(props) {
         navigator.clipboard.writeText(oldText);
         props.showAlert('Successfully Copied to Clipboard', 'success');
     }
+    window.focus(document.querySelector('#input-box'));
     // Return Module
     return (
         <>
