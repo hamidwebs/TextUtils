@@ -36,7 +36,7 @@ function App() {
   document.title = 'TextUtils - Home';
   return (
     <>
-      <Router>
+      <Router basename="/TextUtils">
         <Navbar title="TextUtils" aboutText="About TextUtils" aboutLink="/" mode={mode} toggleMode={toggleMode} />
         <Alert alert={alert} mode={mode} />
         <Switch>
@@ -45,7 +45,7 @@ function App() {
               <About mode={mode} />
             </div>
           </Route>
-          <Route path="/">
+          <Route path="/TextUtils">
             <div className="container my-4">
               <TextFrom heading="Enter Text to Analyze" mode={mode} toggleMode={toggleMode} showAlert={showAlert} />
             </div>
